@@ -44,14 +44,7 @@ class AppRouter extends Router{
 
       for(var i=0;i<req.files.length;i++){
         var filename = req.files[i].filename;
-        const splted = filename.split('-');
-
         filenames.splice(0,0,filename);
-
-        if(type === 'card'){
-            append = splted[1] === 'cardIcon.png'? this.getAppend('cardIcon'): this.getAppend('langAudio');
-        }
-
         fs.move(temp + filename, storage + append + filename, (err)=> {
             if(err){ console.log(err); }
         });

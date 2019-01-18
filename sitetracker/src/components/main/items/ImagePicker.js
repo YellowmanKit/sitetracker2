@@ -12,10 +12,7 @@ class ImagePicker extends UI {
     const style = {
       width: this.bs.height * 0.45,
       height: this.bs.height * 0.075,
-      backgroundColor: this.ui.colors.blue,
-      fontColor: 'white',
-      fontWeight: 'normal',
-      position: 'relative'
+      backgroundColor: this.ui.colors.blue
     }
     if(mobile){
       const inputStyle = {...style, ...this.ui.styles.fileInput, ...{

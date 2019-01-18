@@ -11,9 +11,10 @@ class ProgressBar extends UI {
     const style = {
       borderRadius: '10%',
       width: this.bs.width * 0.1,
-      height: this.bs.width * 0.1
+      height: this.bs.width * 0.1,
+      opacity: active? 1:0.5
     }
-    return this.buttons.button(style, [], active? url:'', active? onClick: ()=>{})
+    return this.buttons.button(style, [], url, active? onClick: ()=>{})
   }
 
   progress(){
@@ -52,14 +53,15 @@ class ProgressBar extends UI {
   }
 
   stage(stage, index){
-    const size = stage.index === this.props.currentStage? this.bs.width * 0.04: this.bs.width * 0.035;
+    const size = this.bs.width * 0.035;
     const style = {...this.ui.styles.border, ...{
+      opacity: stage.index === this.props.currentStage? 1:0.5,
       borderRadius: '100%',
       width: size,
       height: size,
       backgroundColor: this.props.submitted? this.ui.colors.green: stage.pending? this.ui.colors.yellow: 'transparent'
     }}
-    return this.buttons.button(style, [], this.props.submitted || stage.pending?tick:'', ()=>{}, index)
+    return this.buttons.button(style, [], this.props.submitted || stage.pending?tick:'', ()=>{ this.actions.report.setCurrentStage(stage.index) }, index)
   }
 
   render(){
@@ -71,7 +73,8 @@ class ProgressBar extends UI {
     const currentStage = this.props.currentStage;
     return (
       <div style={style}>
-        {this.navButton(previous, currentStage > 0,()=>{ this.actions.report.setCurrentStage(this.store.report.currentStage - 1) })}
+        {this.navButton(previous, currentStage > 0 && currentStage !== 4,
+          ()=>{ this.actions.report.setCurrentStage(this.store.report.currentStage - 1) })}
         {this.progress()}
         {this.navButton(next, currentStage < 3,()=>{ this.actions.report.setCurrentStage(this.store.report.currentStage + 1) })}
       </div>

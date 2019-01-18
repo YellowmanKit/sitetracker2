@@ -82,7 +82,7 @@ const styles = {
     cursor: 'pointer',
     backgroundSize: '100% 100%',
     backgroundColor: 'transparent',
-    fontWeight: 'bold',
+    fontWeight: 'normal',
     fontSize: '100%',
     color: 'white',
     flexShrink: 0,

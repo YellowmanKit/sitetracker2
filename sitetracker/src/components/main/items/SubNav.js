@@ -41,11 +41,11 @@ class SubNav extends UI {
 
   selectedFooter(selected){
     const style = {
-      width: '101%',
+      width: '100%',
       height: '10%',
       position: 'absolute',
-      bottom: 0,
-      right: -1,
+      bottom: -1,
+      left: 0,
       backgroundColor: selected? this.ui.colors.blue: 'transparent'
     }
     return <div style={style}/>

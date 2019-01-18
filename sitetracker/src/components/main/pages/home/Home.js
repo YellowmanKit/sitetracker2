@@ -2,6 +2,7 @@ import React from 'react';
 import View from 'components/main/pages/home/views/View';
 
 import Entry from './views/entry/Entry';
+import GeoLocated from './extends/GeoLocated';
 
 class Home extends View {
 
@@ -44,6 +45,7 @@ class Home extends View {
 
     return(
       <div style={pageStyle}>
+        {!this.store.main.geoLocated && <GeoLocated app={this.props.app}/>}
         {this.animatedView(this.views.bind(this), deadView? deadView: view, deadView? false: true)}
       </div>
     )

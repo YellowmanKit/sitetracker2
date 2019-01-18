@@ -19,6 +19,24 @@ class App extends Component {
 
   isDev(){ return process.env.REACT_APP_DEV === 'true'; }
 
+  addZeroIfSingle(num){
+    if(num < 10){
+      return '0' + String(num);
+    }else{
+      return '' + String(num);
+    }
+  }
+
+  dateString(date) {
+    let year = date.getFullYear();
+    let monthIndex = date.getMonth() + 1;
+    let day = date.getDate();
+
+    let dateStr = year + '-' + this.addZeroIfSingle(monthIndex) + '-' + this.addZeroIfSingle(day);
+    //return '2018-02-08';
+    return dateStr;
+  }
+
   multiLang(english, chinese, simplified_chinese){
     switch (this.props.store.main.language) {
       case 'english':
@@ -70,7 +88,8 @@ class App extends Component {
       database: this.props.db,
       functions: {
         url: this.url.bind(this),
-        multiLang: this.multiLang.bind(this)
+        multiLang: this.multiLang.bind(this),
+        dateString: this.dateString.bind(this)
       }
     }
     return (

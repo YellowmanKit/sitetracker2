@@ -1,3 +1,17 @@
+export const setGeoLocated = (geoLocated) =>{
+  return {
+    type: 'setGeoLocated',
+    payload: geoLocated
+  }
+}
+
+export const setSignature = (signature) =>{
+  return {
+    type: 'setSignature',
+    payload: signature
+  }
+}
+
 export const setPhoto = (photo) =>{
   return {
     type: 'setPhoto',

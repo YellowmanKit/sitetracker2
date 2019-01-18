@@ -1,8 +1,12 @@
 import React from 'react';
 import SubView from 'components/main/pages/home/views/SubView';
 import ProgressBar from 'components/main/items/ProgressBar';
+
 import ImagePicker from 'components/main/items/ImagePicker';
-import ProblemSelector from 'components/main/items/ProblemSelector';
+import ProblemSelector from './content/ProblemSelector';
+import GeoLocator from './content/GeoLocator';
+import Signature from './content/Signature';
+import SubmittedPage from './content/SubmittedPage';
 
 class Report extends SubView {
 
@@ -17,7 +21,14 @@ class Report extends SubView {
         return <ImagePicker app={this.app}/>
       case 1:
         return <ProblemSelector app={this.app}/>
+      case 2:
+        return <GeoLocator app={this.app}/>
+      case 3:
+        return <Signature app={this.app} submit={this.submit.bind(this)}/>
+      case 4:
+        return <SubmittedPage app={this.app} />
       default:
+        return null;
     }
   }
 
@@ -28,6 +39,7 @@ class Report extends SubView {
     return(
       <div style={this.subViewStyle()}>
         <ProgressBar
+        submitted={this.store.report.viewingReport.submitted}
         currentStage={currentStage}
         progress={progress} app={this.app}/>
         {this.gap('10%')}
@@ -46,7 +58,7 @@ class Report extends SubView {
       {
         index: 1,
         key: 'selectProblem',
-        pending: report.problemType
+        pending: report.problem
       },
       {
         index: 2,
@@ -56,9 +68,20 @@ class Report extends SubView {
       {
         index: 3,
         key: 'signature',
-        pending: report.signature
+        pending: report.email || report.signature
       }
     ]
+  }
+
+  submit(){
+    const report = this.store.report.viewingReport;
+    const photoBlob = this.store.main.photoBlob;
+    const signatureBlob = this.store.main.signatureBlob;
+    if(!photoBlob || !signatureBlob ||
+    !report.problem || !report.geoLocated){
+      return;
+    }
+    this.actions.report.submit(report, photoBlob, signatureBlob);
   }
 
 }

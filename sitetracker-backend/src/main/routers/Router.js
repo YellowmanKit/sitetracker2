@@ -2,7 +2,8 @@ class Router {
 
   getAppend(type){
     return(
-    type === 'courseIcon'? 'courses/icons/':
+    type === 'photo'? 'photo/':
+    type === 'signature'? 'signature/':
     type);
   }
 
@@ -11,6 +12,13 @@ class Router {
     const endDate = new Date(date);
     return date < today;
   }
+
+  to(promise) {
+     return promise.then(data => {
+        return [null, data];
+     }).catch(err => [err]);
+  }
+
 
 }
 

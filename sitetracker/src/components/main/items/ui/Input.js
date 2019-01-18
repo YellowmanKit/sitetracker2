@@ -14,7 +14,24 @@ class Input {
   }
 
   checkbox(id, scale, name, checked, onChange){
-    return <input type='checkbox' key={name} id={id} name={name} checked={checked} onChange={onChange}/>
+    const style = {...this.ui.styles.area, ...{
+      width: scale[0],
+      height: scale[1],
+      fontSize: scale[1] * 0.5,
+      fontWeight: 'normal',
+      justifyContent: 'flex-start',
+      margin: '5%'
+    }}
+    const boxStyle = {
+      width: scale[1],
+      height: scale[1]
+    }
+    return(
+      <div key={name} style={style}>
+        <input style={boxStyle} type='checkbox' id={id} name={name} checked={checked} onChange={onChange}/>
+        {name}
+      </div>
+    )
   }
 
   optionBar(id, scale, options, defaultValue, onChange){
@@ -63,8 +80,9 @@ class Input {
     const inputStyle = {
       width: size[0],
       height: size[1],
-      fontSize: size[1],
-      color: this.ui.colors.grey,
+      fontSize: size[1] * 0.75,
+      fontWeight: 'normal',
+      color: this.ui.colors.textGrey,
       flexShrink: 0
     }
     return(

@@ -47,10 +47,10 @@ class ProblemSelector extends UI {
   }
 
   problems(){
+    const viewingReport = this.store.report.viewingReport;
     return this.state.problems[this.state.selectedCatagory].map(problem=>{
-      return this.inputs.checkbox('problem',
-      [this.bs.height * 0.45, this.bs.height * 0.065], problem.name, false,
-      ()=>{ console.log(problem.name) });
+      return this.inputs.checkbox('problem', [this.bs.height * 0.45, this.bs.height * 0.065], problem.name, viewingReport.problem === problem.name,
+      ()=>{ this.actions.report.viewReport({...viewingReport, ...{ problem: problem.name }}) });
     })
   }
 
@@ -69,6 +69,7 @@ class ProblemSelector extends UI {
         {this.gap('5%')}
         {this.inputs.optionBar('catagory', [this.bs.height * 0.45, this.bs.height * 0.065], this.state.catagories,
         this.state.selectedCatagory, ()=>{ this.setState({ selectedCatagory: document.getElementById('catagory').value })})}
+        {this.gap('5%')}
         {this.problems()}
       </div>
     )

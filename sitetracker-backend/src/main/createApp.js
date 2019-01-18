@@ -10,6 +10,7 @@ import fs from 'fs';
 
 import AppRouter from './routers/app.js';
 import UserRouter from './routers/user.js';
+import ReportRouter from './routers/report.js';
 
 class CreateApp {
 
@@ -58,7 +59,8 @@ class CreateApp {
 
     new AppRouter(app);
     new UserRouter(app);
-
+    new ReportRouter(app);
+    
     app.server.listen(port, ()=>{console.log('App is running on port ' + app.server.address().port);});
   }
 
