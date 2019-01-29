@@ -62,8 +62,8 @@ class Button {
     switch (name) {
       case 'absoluteClose':
         return {
-          width: this.bs.height * 0.06,
-          height: this.bs.height * 0.06,
+          width: this.bs.height * 0.04,
+          height: this.bs.height * 0.04,
           margin: this.bs.width * 0.015,
           position: 'absolute',
           top: 0,

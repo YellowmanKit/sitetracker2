@@ -2,8 +2,9 @@ const mainReducer = (
   state = {
     status: 'init',
 
-    photoUrl: null,
-    photoBlob: null,
+    photoUrl: [null, null, null, null],
+    photoBlob: [null, null, null, null],
+    photoIndex: 0,
 
     signatureUrl: null,
     signatureBlob: null,
@@ -19,9 +20,15 @@ const mainReducer = (
     case 'setSignature':
       if(!action.payload){ return state; }
       return {...state, signatureUrl: action.payload.url, signatureBlob: action.payload.blob};
+    case 'setPhotoIndex':
+      return {...state, photoIndex: action.payload }
     case 'setPhoto':
       if(!action.payload){ return state; }
-      return {...state, photoUrl: action.payload.url, photoBlob: action.payload.blob};
+      var newPhotoUrl = state.photoUrl;
+      newPhotoUrl[state.photoIndex] = action.payload.url;
+      var newPhotoBlob = state.photoBlob;
+      newPhotoBlob[state.photoIndex] = action.payload.blob;
+      return {...state, photoUrl: newPhotoUrl, photoBlob: newPhotoBlob};
     case 'setStatus':
       return {...state, status: action.payload};
     default:

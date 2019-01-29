@@ -4,13 +4,16 @@ const reportReducer = (
   state = {
     reports: [],
     viewingReport: {},
-    currentStage: 0
+    currentStage: 4
   }, action)=>{
+  const viewingReport = state.viewingReport;
   switch (action.type) {
     case 'setCurrentStage':
       const index = action.payload;
-      if(index < 0 || index > 4){ return state; }
+      if(index < 0 || index > 5){ return state; }
       return {...state, currentStage: action.payload};
+    case 'updateReport':
+      return {...state, viewingReport: {...viewingReport, ...action.payload} };
     case 'viewReport':
       return {...state, viewingReport: action.payload};
     case 'updateReports':

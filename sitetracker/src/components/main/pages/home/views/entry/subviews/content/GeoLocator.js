@@ -38,7 +38,7 @@ class GeoLocator extends UI {
         {coords && this.textDisplay(this.func.multiLang('Longitude: ', '經度: ', '经度: ') + coords.longitude)}
         {coords && this.textDisplay(this.func.multiLang('Latitude: ', '緯度: ', '纬度: ') + coords.latitude)}
         {this.gap('10%')}
-        {coords && <div style={{width: this.bs.height * 0.4, height: this.bs.height * 0.4}}>
+        {coords && <div style={{width: this.bs.height * 0.4, height: this.bs.height * 0.25}}>
           <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyDwMEZzKV6ej1wGv8-X476AqJvY2QjjZF0' }}
           defaultCenter={{lat: coords.latitude, lng: coords.longitude}}

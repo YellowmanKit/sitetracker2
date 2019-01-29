@@ -55,6 +55,13 @@ export function submit (report, photoBlob, signatureBlob) {
   }
 }
 
+export const updateReport = (value) =>{
+  return {
+    type: 'updateReport',
+    payload: value
+  }
+}
+
 export const setCurrentStage = (index) =>{
   return {
     type: 'setCurrentStage',

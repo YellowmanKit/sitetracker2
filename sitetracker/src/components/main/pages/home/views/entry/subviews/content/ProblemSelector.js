@@ -5,6 +5,7 @@ class ProblemSelector extends UI {
 
   constructor(props){
     super(props);
+    this.init(props);
     this.state = {
       catagories: ['CatagoryA','CatagoryB','CatagoryC'],
       selectedCatagory: 'CatagoryA',
@@ -44,13 +45,14 @@ class ProblemSelector extends UI {
         ],
       }
     }
+    this.actions.report.updateReport({ catagory: "CatagoryA" });
   }
 
   problems(){
     const viewingReport = this.store.report.viewingReport;
     return this.state.problems[this.state.selectedCatagory].map(problem=>{
       return this.inputs.checkbox('problem', [this.bs.height * 0.45, this.bs.height * 0.065], problem.name, viewingReport.problem === problem.name,
-      ()=>{ this.actions.report.viewReport({...viewingReport, ...{ problem: problem.name }}) });
+      ()=>{ this.actions.report.updateReport({ problem: problem.name }); });
     })
   }
 
@@ -67,8 +69,11 @@ class ProblemSelector extends UI {
       <div style={style}>
         {this.textDisplay(this.func.multiLang('Problem Type','問題類型','问题类型'), null, this.bs.height * 0.045, null, null,'selectProblem')}
         {this.gap('5%')}
-        {this.inputs.optionBar('catagory', [this.bs.height * 0.45, this.bs.height * 0.065], this.state.catagories,
-        this.state.selectedCatagory, ()=>{ this.setState({ selectedCatagory: document.getElementById('catagory').value })})}
+        {this.inputs.optionBar('catagory', [this.bs.height * 0.45, this.bs.height * 0.065], this.state.catagories, this.state.selectedCatagory,
+        ()=>{
+          this.setState({ selectedCatagory: document.getElementById('catagory').value });
+          this.actions.report.updateReport({ catagory: document.getElementById('catagory').value });
+        })}
         {this.gap('5%')}
         {this.problems()}
       </div>

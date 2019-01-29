@@ -12,6 +12,13 @@ export const setSignature = (signature) =>{
   }
 }
 
+export const setPhotoIndex = (index) =>{
+  return {
+    type: 'setPhotoIndex',
+    payload: index
+  }
+}
+
 export const setPhoto = (photo) =>{
   return {
     type: 'setPhoto',

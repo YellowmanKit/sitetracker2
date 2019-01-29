@@ -71,12 +71,15 @@ class ProgressBar extends UI {
       backgroundColor: 'white'
     }};
     const currentStage = this.props.currentStage;
+    const previousActive = currentStage > 0 && currentStage !== this.props.progress.length;
+    const nextActive = currentStage < this.props.progress.length - 1;
     return (
       <div style={style}>
-        {this.navButton(previous, currentStage > 0 && currentStage !== 4,
+        {this.navButton(previous, previousActive,
           ()=>{ this.actions.report.setCurrentStage(this.store.report.currentStage - 1) })}
         {this.progress()}
-        {this.navButton(next, currentStage < 3,()=>{ this.actions.report.setCurrentStage(this.store.report.currentStage + 1) })}
+        {this.navButton(next, nextActive,
+          ()=>{ this.actions.report.setCurrentStage(this.store.report.currentStage + 1) })}
       </div>
     )
   }
