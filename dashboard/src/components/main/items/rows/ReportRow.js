@@ -7,7 +7,7 @@ class ReportRow extends Row {
     super(props);
     this.init(props);
     this.state = {
-      filename: this.props.report? this.props.report.photo: null,
+      filename: this.props.report? this.props.report.photo[0]: null,
       type: 'photo'
     }
     this.checkUrl();
@@ -68,7 +68,8 @@ class ReportRow extends Row {
   )
 
   text(text){
-    return this.textDisplay(text,['100%',this.bs.height * 0.025], this.bs.width * 0.01, 'center',this.ui.colors.textGrey)
+    return this.textDisplay(text,['100%',this.bs.height * 0.035], this.bs.height * 0.025,
+    'center',this.ui.colors.textGrey);
   }
 
   itemStyle(width){
@@ -83,7 +84,10 @@ class ReportRow extends Row {
   lastModified(){
     return (
       <div style={this.itemStyle(this.bs.width * 0.16)}>
-        {this.rowIcon()}
+        {this.rowIcon(null, ()=>{
+          this.actions.main.setPhotoViewer(0);
+          this.actions.report.viewReport(this.props.report);
+        } )}
         {this.gap('5%')}
         {this.text(this.func.dateString(new Date(this.props.report.createdAt)))}
       </div>
@@ -141,8 +145,8 @@ class ReportRow extends Row {
   coordinate(){
     return (
       <div style={this.itemStyle()}>
-        {this.text(this.props.report.geoLocated.latitude)}
-        {this.text(this.props.report.geoLocated.longitude)}
+        {this.text(Math.round(this.props.report.geoLocated.latitude * 100) / 100)}
+        {this.text(Math.round(this.props.report.geoLocated.longitude * 100) / 100)}
       </div>
     )
   }

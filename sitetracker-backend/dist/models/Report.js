@@ -13,16 +13,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var to = _Model2.default.to;
 
 var schema = _mongoose2.default.Schema({
-  photo: {
+  photo: [String],
+  signature: {
     type: String
   },
-  signature: {
+  catagory: {
     type: String
   },
   problem: {
     type: String
   },
+  description: {
+    type: String
+  },
   email: {
+    type: String
+  },
+  address: {
     type: String
   },
   geoLocated: {
@@ -30,8 +37,7 @@ var schema = _mongoose2.default.Schema({
     longitude: { type: String }
   },
   createdAt: {
-    type: Date,
-    default: new Date()
+    type: Date
   }
 });
 

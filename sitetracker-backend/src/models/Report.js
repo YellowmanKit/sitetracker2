@@ -3,16 +3,23 @@ import Model from'./Model';
 var to = Model.to;
 
 var schema = mongoose.Schema({
-  photo: {
+  photo: [String],
+  signature: {
     type: String
   },
-  signature: {
+  catagory: {
     type: String
   },
   problem: {
     type: String
   },
+  description: {
+    type: String
+  },
   email: {
+    type: String
+  },
+  address: {
     type: String
   },
   geoLocated: {
@@ -20,8 +27,7 @@ var schema = mongoose.Schema({
     longitude: { type: String }
   },
   createdAt: {
-    type: Date,
-    default: new Date()
+    type: Date
   }
 })
 

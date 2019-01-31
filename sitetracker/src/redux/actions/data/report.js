@@ -25,7 +25,9 @@ export function submit (report, photoBlob, signatureBlob) {
     actions.connecting(dispatch);
 
     var photoFile = new FormData();
-    photoFile.append('files', photoBlob, 'photo.png');
+    for(var i=0;i<photoBlob.length;i++){
+      photoFile.append('files', photoBlob[i], 'photo.png');
+    }
     var signatureFile = new FormData();
     signatureFile.append('files', signatureBlob, 'signature.png');
 
@@ -35,7 +37,7 @@ export function submit (report, photoBlob, signatureBlob) {
     [err, signatureRes] = await to(axios.post(api + '/upload', signatureFile, { headers: { type: 'signature'}}))
     if(err){actions.connectionError(dispatch); return;}
 
-    const photo = photoRes.data.filenames[0];
+    const photo = photoRes.data.filenames;
     const signature = signatureRes.data.filenames[0];
 
     var reportToUpload = {...report, ...{photo: photo, signature: signature} };
@@ -47,7 +49,8 @@ export function submit (report, photoBlob, signatureBlob) {
       dispatch({type: 'hideModal'});
       dispatch({type: 'updateReports', payload: [reportRes.data.report]});
       dispatch({type: 'viewReport', payload: { submitted: true }});
-      dispatch({type: 'setCurrentStage', payload: 4 });
+      dispatch({type: 'setCurrentStage', payload: 5 });
+      dispatch({type: 'resetPhoto'});
     }else{
       console.log(reportRes.data.result);
       dispatch({type: 'message', payload: ['Submit failed! Please try again!', '提交失敗! 請再試一次!', '提交失败! 请再试一次!']});

@@ -11,14 +11,14 @@ class Entry extends View {
   topBar(){
     const style = {...this.ui.styles.area, ...{
       width: this.bs.width,
-      height: this.bs.width * 0.1,
+      height: this.bs.height * 0.1,
       backgroundColor: 'transparent',
       alignItems: 'center'
     }}
     return(
       <div style={style}>
         {this.verGap('5%')}
-        {this.inputs.inputField('search','text','',['50%',this.bs.width * 0.03],'',()=>{})}
+        {this.inputs.inputField('search','text','',[this.bs.width * 0.5,this.bs.height * 0.025],'',()=>{})}
         {this.verGap('30%')}
         {this.buttons.standard(this.ui.colors.blue, ['Export .csv','汇出 .csv',''], ()=>{})}
       </div>
@@ -42,7 +42,7 @@ class Entry extends View {
   tableBar(){
     const style = {...this.ui.styles.area, ...{
       width: this.bs.width,
-      height: this.bs.width * 0.035,
+      height: this.bs.height * 0.1,
       backgroundColor: this.ui.colors.deepBlue
     }}
     return(
@@ -75,8 +75,8 @@ class Entry extends View {
 
   reportRows(){
     const style = {...this.bs ,...{
-      width: '100%',
-      height: '100%',
+      width: this.bs.width,
+      height: this.bs.height * 0.8,
       overflow: 'auto'
     }}
     return(

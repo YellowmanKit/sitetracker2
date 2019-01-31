@@ -1,4 +1,5 @@
 import React from 'react';
+import icon_cross from 'resources/images/general/cross.png';
 
 class Button {
 
@@ -29,14 +30,27 @@ class Button {
     return this.button(style, text, '', onClick, 'rectGreen')
   }
 
+  absoluteClose(onClick){
+    const style = {
+      width: this.bs.height * 0.04,
+      height: this.bs.height * 0.04,
+      margin: this.bs.width * 0.015,
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      opacity: 0.25
+    }
+    return this.button(style, ['',''], icon_cross, onClick)
+  }
+
   standard(color, text, onClick){
     const style = {
-      width: this.bs.width * 0.125,
-      height: this.bs.width * 0.045,
+      width: this.bs.height * 0.135,
+      height: this.bs.height * 0.065,
       background: color,
       color: 'white',
       fontWeight: 'normal',
-      fontSize: this.bs.width * 0.02
+      fontSize: '100%'
     }
     return this.button(style, text, '', onClick, 'standard' + text)
   }

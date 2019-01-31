@@ -18,11 +18,10 @@ class Row extends UI {
     const infoStyle = {...this.bs, ...{
       width: '75%',
       height: this.bs.height * 0.12,
-      marginLeft: this.bs.height * 0.02
+      marginLeft: this.bs.height * 0.01
     }}
     return(
       <div style={infoStyle}>
-        {this.rowTitle(title)}
         {rowInfo()}
       </div>
     )
@@ -93,8 +92,7 @@ class Row extends UI {
         flexShrink: 0,
         width: '90%',
         height: this.bs.height * 0.2,
-        borderBottom: '1px solid ' + this.ui.colors.darkGrey,
-        alignItems: 'center',
+        justifyContent: 'flex-start',
         position: 'relative',
         borderRadius: 5,
         margin: '1%'

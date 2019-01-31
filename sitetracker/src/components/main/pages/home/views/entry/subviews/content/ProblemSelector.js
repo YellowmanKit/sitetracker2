@@ -60,7 +60,7 @@ class ProblemSelector extends UI {
     this.init(this.props);
     const style = {...this.bs, ...this.ui.styles.border, ...{
       width: this.bs.height * 0.45,
-      height: this.bs.height * 0.45,
+      height: this.bs.height * 0.5,
       backgroundColor: 'white',
       padding: '2%'
     }};

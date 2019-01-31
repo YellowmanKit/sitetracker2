@@ -22,6 +22,8 @@ const mainReducer = (
       return {...state, signatureUrl: action.payload.url, signatureBlob: action.payload.blob};
     case 'setPhotoIndex':
       return {...state, photoIndex: action.payload }
+    case 'resetPhoto':
+      return {...state, photoUrl: [null, null, null, null], photoBlob: [null, null, null, null]}
     case 'setPhoto':
       if(!action.payload){ return state; }
       var newPhotoUrl = state.photoUrl;

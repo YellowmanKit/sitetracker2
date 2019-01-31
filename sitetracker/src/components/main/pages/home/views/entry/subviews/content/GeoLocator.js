@@ -32,13 +32,16 @@ class GeoLocator extends UI {
     }};
     const coords = this.store.main? this.store.main.geoLocated:
     this.props.report.geoLocated? this.props.report.geoLocated: null;
+    const viewingReport = this.store.report.viewingReport;
     return (
       <div style={style}>
-        {!coords && this.textDisplay(this.func.multiLang('Loading...', '載入中...', '载入中...'))}
-        {coords && this.textDisplay(this.func.multiLang('Longitude: ', '經度: ', '经度: ') + coords.longitude)}
-        {coords && this.textDisplay(this.func.multiLang('Latitude: ', '緯度: ', '纬度: ') + coords.latitude)}
-        {this.gap('10%')}
-        {coords && <div style={{width: this.bs.height * 0.4, height: this.bs.height * 0.25}}>
+        {this.inputs.textArea('address', ['Address ', '地址', '地址'], viewingReport.address,
+        ()=>{ this.actions.report.updateReport({ address: document.getElementById('address').value})},
+        [this.bs.height * 0.45,this.bs.height * 0.25], this.bs.height * 0.035)}
+        {this.gap('3%')}
+        {this.sep()}
+        {this.gap('3%')}
+        {coords && <div style={{width: this.bs.height * 0.45, height: this.bs.height * 0.25}}>
           <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyDwMEZzKV6ej1wGv8-X476AqJvY2QjjZF0' }}
           defaultCenter={{lat: coords.latitude, lng: coords.longitude}}

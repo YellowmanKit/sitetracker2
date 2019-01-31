@@ -3,6 +3,7 @@ import View from 'components/main/pages/home/views/View';
 
 //import NavBar from './NavBar';
 import Entry from './views/Entry';
+import PhotoViewer from 'components/main/extend/PhotoViewer';
 
 class Home extends View {
 
@@ -46,6 +47,7 @@ class Home extends View {
     return(
       <div style={pageStyle}>
         {this.animatedView(this.views.bind(this), deadView? deadView: view, deadView? false: true)}
+        <PhotoViewer app={this.app}/>
       </div>
     )
   }

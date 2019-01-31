@@ -31,8 +31,11 @@ class App extends Component {
     let year = date.getFullYear();
     let monthIndex = date.getMonth() + 1;
     let day = date.getDate();
+    let hour = date.getHours();
+    let min = date.getMinutes();
 
-    let dateStr = year + '-' + this.addZeroIfSingle(monthIndex) + '-' + this.addZeroIfSingle(day);
+    let dateStr = year + '-' + this.addZeroIfSingle(monthIndex) + '-' + this.addZeroIfSingle(day)
+    + ' ' + this.addZeroIfSingle(hour) + ':' + this.addZeroIfSingle(min);
     //return '2018-02-08';
     return dateStr;
   }

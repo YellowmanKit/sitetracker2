@@ -31,7 +31,9 @@ class ReportRouter extends Router {
       console.log(data);
 
       let err, report;
-      [err, report] = await to(Report.create({...data.report, ...{geoLocated: {latitude: data.latitude, longitude: data.longitude}} }))
+      [err, report] = await to(Report.create({
+        ...data.report,
+        ...{ geoLocated: { latitude: data.latitude, longitude: data.longitude}, createdAt: new Date() } }))
       if(err){ return res.json({ result: 'failed' }) }
       return res.json({ result: 'succeed', report: report })
     });

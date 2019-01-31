@@ -16,5 +16,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var app = new _createApp2.default('sitetracker', 443, true, false);
 var app2 = new _createApp2.default('dashboard', 80, false, false);
+//const app = new CreateApp('sitetracker', 3000, false, false);
+//const app2 = new CreateApp('dashboard', 3002, false, false);
 exports.default = app;
 //# sourceMappingURL=index.js.map

@@ -24,7 +24,7 @@ class Description extends UI {
         {this.gap('5%')}
         {this.inputs.textArea('description', '', viewingReport.description,
         ()=>{ this.actions.report.updateReport({ description: document.getElementById('description').value})},
-        [this.bs.height * 0.4,this.bs.height * 0.45], this.bs.height * 0.035)}
+        [this.bs.height * 0.45,this.bs.height * 0.45], this.bs.height * 0.035)}
       </div>
     )
   }

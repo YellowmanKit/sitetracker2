@@ -73,7 +73,8 @@ class Input {
       fontSize: fontSize? fontSize: '175%',
       flexShrink: 0
     }
-    return <textarea id={id} style={textAreaStyle} defaultValue={value} onChange={onChange?onChange:null} placeholder={placeholder?this.func.multiLang(placeholder[0],placeholder[1],placeholder[2]):''}/>
+    return <textarea id={id} style={textAreaStyle} defaultValue={value} onChange={onChange?onChange:null}
+    placeholder={placeholder?this.func.multiLang(placeholder[0],placeholder[1],placeholder[2]):''}/>
   }
 
   inputField(id, type, placeholder, size, value, onChange){

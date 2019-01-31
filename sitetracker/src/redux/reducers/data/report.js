@@ -4,7 +4,7 @@ const reportReducer = (
   state = {
     reports: [],
     viewingReport: {},
-    currentStage: 4
+    currentStage: 0
   }, action)=>{
   const viewingReport = state.viewingReport;
   switch (action.type) {

@@ -106,8 +106,9 @@ class Report extends SubView {
     const report = this.store.report.viewingReport;
     const photoBlob = this.store.main.photoBlob;
     const signatureBlob = this.store.main.signatureBlob;
-    if(!photoBlob || !signatureBlob ||
+    if(!this.checkPhotoExist() || !signatureBlob ||
     !report.problem || !report.geoLocated){
+      this.actions.modal.message(['Some field is missing!','資料未齊全!','资料未齐全!'])
       return;
     }
     this.actions.report.submit(report, photoBlob, signatureBlob);

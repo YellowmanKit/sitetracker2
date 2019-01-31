@@ -31,6 +31,12 @@ const uiReducer = (
         borderWidth: '1px',
         borderColor: '#dddddd'
       },
+      button: {
+        backgroundColor: 'transparent',
+        border: 'none',
+        cursor: 'pointer',
+        backgroundSize: '100% 100%'
+      }
     },
     colors: {
       green: '#91c33b',

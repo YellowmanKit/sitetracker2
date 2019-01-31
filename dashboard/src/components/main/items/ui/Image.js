@@ -34,11 +34,9 @@ class Image extends UI {
     var containerStyle = {...this.ui.styles.container, ...{
       width: this.props.size? size: scale[0],
       height: this.props.size? size: scale[1],
-      backgroundColor: this.props.backgroundColor? this.props.backgroundColor: 'white',
+      backgroundColor: this.props.backgroundColor? this.props.backgroundColor: 'transparent',
     }}
-    if(!this.props.noBorder){
-      containerStyle = {...this.ui.styles.border, ...containerStyle}
-    }
+
     const imgBg = url? null: no_image;
     const imgSize = this.props.size? size * 0.95: '95%';
     const backgroundStyle = {...this.ui.styles.container, ...{
@@ -64,6 +62,7 @@ class Image extends UI {
   }
 
   onImageClick(){
+    if(this.props.onClick){ this.props.onClick(); }
     if(!this.props.photoUrl && !this.url.url){ return; }
     //this.actions.main.enlargeImage(this.props.photoUrl? this.props.photoUrl: this.url.url);
   }

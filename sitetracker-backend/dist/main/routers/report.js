@@ -116,7 +116,7 @@ var ReportRouter = function (_Router) {
 
                   err = void 0, report = void 0;
                   _context2.next = 5;
-                  return to(_Report2.default.create(_extends({}, data.report, { geoLocated: { latitude: data.latitude, longitude: data.longitude } })));
+                  return to(_Report2.default.create(_extends({}, data.report, { geoLocated: { latitude: data.latitude, longitude: data.longitude }, createdAt: new Date() })));
 
                 case 5:
                   _ref5 = _context2.sent;

@@ -43,10 +43,11 @@ class Row extends UI {
     return <div style={nameStyle}>{title}</div>
   }
 
-  rowIcon(passed, defaultUrl){
+  rowIcon(defaultUrl, onClick){
     const size = this.bs.height * 0.12;
     const iconSize = this.bs.height * 0.11;
-    const containerStyle = {...this.ui.styles.border , ...this.ui.styles.container, ...{
+    const containerStyle = {...this.ui.styles.button , ...this.ui.styles.container,
+      ...this.ui.styles.border, ...{
       width: size,
       height: size,
       backgroundColor: 'white',
@@ -60,7 +61,7 @@ class Row extends UI {
     }}
     const url = defaultUrl? defaultUrl: this.url.url? this.url.url: no_image;
     return(
-      <div style={containerStyle}>
+      <div style={containerStyle} onClick={onClick}>
         <img key={url} style={iconStyle} src={url} alt=''/>
       </div>
     )

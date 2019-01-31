@@ -19,6 +19,12 @@ export const setPhotoIndex = (index) =>{
   }
 }
 
+export const resetPhoto = () =>{
+  return {
+    type: 'resetPhoto'
+  }
+}
+
 export const setPhoto = (photo) =>{
   return {
     type: 'setPhoto',
