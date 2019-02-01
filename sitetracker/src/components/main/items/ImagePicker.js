@@ -6,6 +6,7 @@ import Image from 'components/main/items/ui/Image';
 import PhotoSlotCell from 'components/main/items/cell/PhotoSlotCell';
 
 import takephoto from 'resources/images/button/takephoto.png';
+import selectPhoto from 'resources/images/button/selectPhoto.png';
 
 class ImagePicker extends UI {
 
@@ -13,11 +14,12 @@ class ImagePicker extends UI {
     const style = {
       width: this.bs.height * 0.45,
       height: this.bs.height * 0.075,
-      backgroundColor: this.ui.colors.blue
+      backgroundImage: 'url(' + takephoto + ')',
+      backgroundSize: '100% 100%'
     }
     if(mobile){
       const inputStyle = {...style, ...this.ui.styles.fileInput, ...{
-        paddingTop: this.bs.height * 0.075,
+        paddingTop: this.bs.height * 0.1,
         backgroundImage: 'url(' + takephoto + ')',
         backgroundSize: '100% 100%'
       }}
@@ -25,7 +27,19 @@ class ImagePicker extends UI {
         <input type="file" accept="image/*" capture="camera" style={inputStyle} alt=''
         onChange={event=>{this.actions.main.setPhoto({blob: event.target.files[0], url: URL.createObjectURL(event.target.files[0])})}}/>)
     }
-    return this.buttons.button(style,['Take Photo', '拍照', '拍照'],'',onClick)
+    return this.buttons.button(style,'','',onClick)
+  }
+
+  selectImage(size){
+    const style = {...this.ui.styles.fileInput, ...{
+      width: this.bs.height * 0.45,
+      height: this.bs.height * 0.075,
+      paddingTop: this.bs.height * 0.075,
+      backgroundImage: 'url(' + selectPhoto + ')',
+      backgroundSize: '100% 100%'
+    }}
+    return <input type="file" accept="image/*" style={style} alt=''
+    onChange={event=>{this.actions.main.setPhoto({blob: event.target.files[0], url: URL.createObjectURL(event.target.files[0])})}}/>
   }
 
   photoSlotSelectBar(){
@@ -71,6 +85,8 @@ class ImagePicker extends UI {
         <MediaQuery maxDeviceWidth={1224}>
           {this.takePhotoButton(()=>{}, true)}
         </MediaQuery>
+        {this.gap('3%')}
+        {this.selectImage()}
       </div>
     )
   }

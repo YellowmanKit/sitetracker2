@@ -7,40 +7,176 @@ class ProblemSelector extends UI {
     super(props);
     this.init(props);
     this.state = {
-      catagories: ['CatagoryA','CatagoryB','CatagoryC'],
-      selectedCatagory: 'CatagoryA',
+      catagories: ['Builder Work','Electrical System','Fire Services','HVAC System','Lift & Escalator',
+      'Lighting System','Extra Low Voltage System','Miscellaneous','Plumbing & Drainage',
+      'Communal Aerial Broadcast Distribution'],
+      selectedCatagory: 'Builder Work',
       problems: {
-        CatagoryA: [
+        'Builder Work': [
           {
-            name: 'issue 1'
+            name: 'Ceiling'
           },
           {
-            name: 'issue 2'
+            name: 'Wall'
           },
           {
-            name: 'issue 3'
+            name: 'Door'
+          },
+          {
+            name: 'Floor'
+          },
+          {
+            name: 'Window'
           }
         ],
-        CatagoryB: [
+        'Electrical System': [
           {
-            name: 'issue 4'
+            name: 'Backup generator'
           },
           {
-            name: 'issue 5'
+            name: 'Power supply'
           },
           {
-            name: 'issue 6'
+            name: 'Fuel Oil Tank'
+          },
+          {
+            name: 'Lightning Protection System'
           }
         ],
-        CatagoryC: [
+        'Fire Services': [
           {
-            name: 'issue 7'
+            name: 'Fire Hydrant'
           },
           {
-            name: 'issue 8'
+            name: 'Automatic Fire Alarm System'
           },
           {
-            name: 'issue 9'
+            name: 'Aspirating Smoke Detector System'
+          },
+          {
+            name: 'Fire Extinguisher'
+          },
+          {
+            name: 'Fire Sprinkler'
+          }
+        ],
+        'HVAC System': [
+          {
+            name: 'Air Handling Unit(AHU)'
+          },
+          {
+            name: 'Computer Room Air Conditioning Unit'
+          },
+          {
+            name: 'Air Curtain'
+          },
+          {
+            name: 'Fire Damper'
+          }
+        ],
+        'Lift & Escalator': [
+          {
+            name: 'Lift'
+          },
+          {
+            name: 'Escalator'
+          }
+        ],
+        'Lighting System': [
+          {
+            name: 'Lighting'
+          }
+        ],
+        'Extra Low Voltage System': [
+          {
+            name: 'Car Park Gate'
+          },
+          {
+            name: 'Wireless Microphone'
+          },
+          {
+            name: 'Cable Microphone'
+          },
+          {
+            name: 'Intercom (Wired)'
+          },
+          {
+            name: 'Door Contact'
+          },
+          {
+            name: 'Key Switch'
+          },
+          {
+            name: 'Security Equipment'
+          },
+          {
+            name: 'CCTV'
+          }
+        ],
+        'Miscellaneous': [
+          {
+            name: 'Storage Cabinet / Shelf'
+          },
+          {
+            name: 'Table'
+          },
+          {
+            name: 'Chair'
+          },
+          {
+            name: 'Dryers'
+          },
+          {
+            name: 'Lockers'
+          },
+          {
+            name: 'Mirror'
+          },
+          {
+            name: 'Hand Dryer'
+          },
+          {
+            name: 'Drinking Fountain'
+          },
+          {
+            name: 'Paper Towel Dispenser'
+          },
+          {
+            name: 'Toilet Paper Dispenser'
+          },
+          {
+            name: 'Soap Dispenser'
+          },
+          {
+            name: 'Shower Head'
+          }
+        ],
+        'Plumbing & Drainage': [
+          {
+            name: 'Water Closet'
+          },
+          {
+            name: 'Water tap'
+          },
+          {
+            name: 'Cleansing Water Tank'
+          },
+          {
+            name: 'Sink'
+          },
+          {
+            name: 'Mop Sink'
+          },
+          {
+            name: 'Drainage'
+          },
+          {
+            name: 'Urinal'
+          }
+        ],
+        'Communal Aerial Broadcast Distribution': [
+          {
+            name: 'Communal Aerial Broadcast Distribution'
           }
         ],
       }
@@ -50,10 +186,19 @@ class ProblemSelector extends UI {
 
   problems(){
     const viewingReport = this.store.report.viewingReport;
-    return this.state.problems[this.state.selectedCatagory].map(problem=>{
-      return this.inputs.checkbox('problem', [this.bs.height * 0.45, this.bs.height * 0.065], problem.name, viewingReport.problem === problem.name,
-      ()=>{ this.actions.report.updateReport({ problem: problem.name }); });
-    })
+    const style = {...this.bs, ...{
+      width: this.bs.height * 0.45,
+      height: '100%',
+      overflow: 'auto'
+    }}
+    return(
+      <div style={style}>
+        {this.state.problems[this.state.selectedCatagory].map(problem=>{
+          return this.inputs.checkbox('problem', [this.bs.height * 0.4, this.bs.height * 0.065], problem.name, viewingReport.problem === problem.name,
+          ()=>{ this.actions.report.updateReport({ problem: problem.name }); })
+        })}
+      </div>
+    )
   }
 
   render(){
