@@ -97,7 +97,7 @@ class ReportRow extends Row {
   description(){
     return (
       <div style={this.itemStyle()}>
-        {this.text('description')}
+        {this.text(this.props.report.description)}
       </div>
     )
   }
@@ -106,6 +106,7 @@ class ReportRow extends Row {
     return (
       <div style={this.itemStyle()}>
         {this.text(this.func.dateString(new Date(this.props.report.createdAt)))}
+        {this.text(this.func.timeString(new Date(this.props.report.createdAt)))}
       </div>
     )
   }
@@ -113,7 +114,7 @@ class ReportRow extends Row {
   category(){
     return (
       <div style={this.itemStyle()}>
-        {this.text('category')}
+        {this.text(this.props.report.catagory)}
       </div>
     )
   }

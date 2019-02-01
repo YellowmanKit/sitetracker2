@@ -34,10 +34,16 @@ class App extends Component {
     let hour = date.getHours();
     let min = date.getMinutes();
 
-    let dateStr = year + '-' + this.addZeroIfSingle(monthIndex) + '-' + this.addZeroIfSingle(day)
-    + ' ' + this.addZeroIfSingle(hour) + ':' + this.addZeroIfSingle(min);
+    let dateStr = year + '-' + this.addZeroIfSingle(monthIndex) + '-' + this.addZeroIfSingle(day);
     //return '2018-02-08';
     return dateStr;
+  }
+
+  timeString(date){
+    let hour = date.getHours();
+    let min = date.getMinutes();
+    let timeStr = this.addZeroIfSingle(hour) + ':' + this.addZeroIfSingle(min);
+    return timeStr;
   }
 
 
@@ -93,7 +99,8 @@ class App extends Component {
       functions: {
         url: this.url.bind(this),
         multiLang: this.multiLang.bind(this),
-        dateString: this.dateString.bind(this)
+        dateString: this.dateString.bind(this),
+        timeString: this.timeString.bind(this)
       }
     }
     return (
