@@ -15,6 +15,7 @@ class Input {
 
   checkbox(id, scale, name, checked, onChange){
     const style = {...this.ui.styles.area, ...{
+      flexShrink: 0,
       width: scale[0],
       height: scale[1],
       fontSize: scale[1] * 0.5,
@@ -23,6 +24,7 @@ class Input {
       margin: '5%'
     }}
     const boxStyle = {
+      flexShrink: 0,
       width: scale[1],
       height: scale[1]
     }

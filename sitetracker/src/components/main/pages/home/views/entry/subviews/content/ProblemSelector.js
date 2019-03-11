@@ -214,7 +214,8 @@ class ProblemSelector extends UI {
       <div style={style}>
         {this.textDisplay(this.func.multiLang('Problem Type','問題類型','问题类型'), null, this.bs.height * 0.045, null, null,'selectProblem')}
         {this.gap('5%')}
-        {this.inputs.optionBar('catagory', [this.bs.height * 0.45, this.bs.height * 0.065], this.state.catagories, this.state.selectedCatagory,
+        {this.inputs.optionBar('catagory', [this.bs.height * 0.45, this.bs.height * 0.065],
+        this.state.catagories, this.state.selectedCatagory,
         ()=>{
           this.setState({ selectedCatagory: document.getElementById('catagory').value });
           this.actions.report.updateReport({ catagory: document.getElementById('catagory').value });
